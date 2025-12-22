@@ -1,6 +1,7 @@
 // pages/feed.js
 import Navbar from '../components/Navbar';
 import ImageCard from '../components/ImageCard';
+import Chatbot from '../components/Chatbot';
 
 export default function Feed() {
   
@@ -41,6 +42,8 @@ export default function Feed() {
 
         </div>
       </main>
+      {/* Aquí va el componente flotante */}
+      <Chatbot />
     </div>
   );
 }
