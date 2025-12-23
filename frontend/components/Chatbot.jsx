@@ -28,6 +28,8 @@ export default function Chatbot() {
   const handleSend = async () => {
     if (!input.trim()) return;
 
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
+
     // 1. Agregar mensaje del usuario
     const userMessage = { role: 'user', text: input, images: [] };
     setMessages((prev) => [...prev, userMessage]);
@@ -38,7 +40,7 @@ export default function Chatbot() {
 
     try {
       // 2. Enviar a Python (FastAPI)
-      const res = await fetch('http://127.0.0.1:8000/chat', {
+      const res = await fetch(`${API_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: currentInput }),
