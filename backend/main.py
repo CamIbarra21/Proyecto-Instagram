@@ -77,24 +77,24 @@ def get_feed():
         cursor.execute("SELECT * FROM memories ORDER BY date DESC")
         memories = cursor.fetchall()
         conn.close()
-        print(memories)
-        # Ajustar la ruta de la imagen para que sea una URL completa
+        
+        import os # Asegúrate de tener esto importado arriba
+        app_url = os.getenv("RAILWAY_PUBLIC_DOMAIN") 
+        
         for mem in memories:
-            # Aseguramos que la ruta empiece con /static/
             if not mem['image_path'].startswith("http"):
-                app_url = os.getenv("RAILWAY_PUBLIC_DOMAIN") 
                 if app_url:
-                    # En producción (Railway no incluye https:// por defecto en la variable, a veces sí)
+                    # Estamos en Railway
                     if not app_url.startswith("http"):
                         app_url = f"https://{app_url}"
                     mem['image_path'] = f"{app_url}/static/{mem['image_path']}"
                 else:
-                    # En local
+                    # Estamos en local
                     mem['image_path'] = f"http://127.0.0.1:8000/static/{mem['image_path']}"
-            # CONVERTIR FECHA A STRING (La solución definitiva)
+            
+            # Convertir fecha a string (lo que ya arreglamos antes)
             if mem['date']:
-                mem['date'] = str(mem['date']) 
-                # Esto transforma el objeto date(2025, 12, 22) en "2025-12-22"
+                mem['date'] = str(mem['date'])
 
         return memories
     except Exception as e:
