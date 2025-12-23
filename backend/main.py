@@ -82,7 +82,15 @@ def get_feed():
         for mem in memories:
             # Aseguramos que la ruta empiece con /static/
             if not mem['image_path'].startswith("http"):
-                mem['image_path'] = f"http://localhost:8000/static/{mem['image_path']}"
+                app_url = os.getenv("RAILWAY_PUBLIC_DOMAIN") 
+                if app_url:
+                    # En producción (Railway no incluye https:// por defecto en la variable, a veces sí)
+                    if not app_url.startswith("http"):
+                        app_url = f"https://{app_url}"
+                    mem['image_path'] = f"{app_url}/static/{mem['image_path']}"
+                else:
+                    # En local
+                    mem['image_path'] = f"http://127.0.0.1:8000/static/{mem['image_path']}"
             # CONVERTIR FECHA A STRING (La solución definitiva)
             if mem['date']:
                 mem['date'] = str(mem['date']) 
