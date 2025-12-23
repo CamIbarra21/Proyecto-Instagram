@@ -77,7 +77,7 @@ def get_feed():
         cursor.execute("SELECT * FROM memories ORDER BY date DESC")
         memories = cursor.fetchall()
         conn.close()
-        
+
         import os # Asegúrate de tener esto importado arriba
         app_url = os.getenv("RAILWAY_PUBLIC_DOMAIN") 
         
@@ -133,9 +133,23 @@ def chat_intent(req: ChatRequest):
     conn.close()
 
     # Formatear URLs de imágenes
+    import os
+    app_url = os.getenv("RAILWAY_PUBLIC_DOMAIN")
     for img in images_db:
         if not img['image_path'].startswith("http"):
-            img['image_path'] = f"http://localhost:8000/static/{img['image_path']}"
+            if app_url:
+                # Estamos en Producción (Railway)
+                clean_url = app_url
+                if not clean_url.startswith("http"):
+                    clean_url = f"https://{clean_url}"
+                img['image_path'] = f"{clean_url}/static/{img['image_path']}"
+            else:
+                # Estamos en Local
+                img['image_path'] = f"http://localhost:8000/static/{img['image_path']}"
+        
+        # Convertir Fecha a Texto (Para evitar el error de validación anterior)
+        if img.get('date'):
+            img['date'] = str(img['date'])
         images.append(img)
 
     if not images and score >= 0.3:
