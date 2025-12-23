@@ -3,23 +3,22 @@ import Link from 'next/link';
 
 export default function Navbar() {
   return (
-    // CAMBIO: Fondo azul oscuro (blue-700) y texto blanco
-    <nav className="bg-blue-700 shadow-lg sticky top-0 z-50">
+    <nav className="bg-blue-800 shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         
         {/* Logo / Título */}
         <Link href="/feed" className="flex items-center gap-2 group">
           {/* Icono de casita o álbum */}
-          <span className="text-2xl">📸</span>
+          <span className="text-2xl">🎁</span>
           <span className="text-xl font-bold text-white tracking-wide group-hover:text-amber-200 transition">
-            Familia
+            Un lugar lleno de recuerdos
           </span>
         </Link>
 
         {/* Lado derecho */}
         <div className="flex items-center space-x-4">
           <span className="text-blue-100 text-sm hidden md:inline font-medium">
-            Hola, Papá
+            Hola, papá
           </span>
           
           {/* Avatar con borde Amarillo/Dorado */}

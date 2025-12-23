@@ -20,7 +20,7 @@ export default function Home() {
          </div>
 
          <h1 className="text-4xl md:text-5xl font-bold text-gray-800">
-           Hola <span className="text-blue-700">Papá</span> 👋
+           Hola <span className="text-blue-800">Papá</span> 👋
          </h1>
          
          <p className="text-lg text-gray-600 leading-relaxed">
@@ -29,7 +29,7 @@ export default function Home() {
          </p>
          
          <Link href="/feed">
-           <button className="w-full px-8 py-4 bg-blue-700 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-blue-800 hover:shadow-xl transition transform hover:-translate-y-1 active:scale-95 cursor-pointer flex items-center justify-center gap-2">
+           <button className="w-full px-8 py-4 bg-blue-800 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-blue-900 hover:shadow-xl transition transform hover:-translate-y-1 active:scale-95 cursor-pointer flex items-center justify-center gap-2">
              <span>Ver Álbum Familiar</span>
              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
